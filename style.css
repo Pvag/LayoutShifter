@@ -1,0 +1,100 @@
+/* I have got this link from Google Fonts:
+ now I can use 'Roboto' and 'Roboto Mono' to set the 'font-family' property of elements. */
+@import url('https://fonts.googleapis.com/css2?family=Roboto&family=Roboto+Mono:ital,wght@0,100;1,100&display=swap');
+
+/* no margins, full content; white text */
+body {
+    margin: 0;
+    color: white;
+}
+
+/* fill the entire page, center the text */
+.wrapper {
+    width: 100%;
+    margin: 0 auto;
+    padding: 0;
+    text-align: center;
+}
+
+header {
+    padding: 60px;
+    background-color: #032380;
+    font-family: 'Roboto Mono', monospace;
+    text-transform: uppercase;
+}
+
+.explanation {
+    font-style: italic;
+    font-size: x-small;
+    text-transform: lowercase;
+}
+
+/* the 3 divs with fruit names are placed inside a main div with class .container .
+ This external div holds 2 flexboxes:
+ the first with one div, the second with two divs;
+ each div in the latter is placed on
+ its independent row, since divs are block elements by default. */
+.container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    font-family: 'Roboto Mono', sans-serif;
+}
+
+.container > div {
+    line-height: 300px;
+    height: 300px;
+}
+
+/** mobile-first development style **/
+/*  ------------------------------  */
+/* the code in the next selector is always applied, but if screen size is > 992px,
+ the media query is then triggered. Its code then overwrites this one, setting different widths
+ for the first element (20%) and for the second and third elements (80% as a whole). */
+/* Notice that for screen size < 992px, element 2 and 3 are placed
+ on different rows, since they are divs, and divs have display:block
+ set by default. This got me thinking a bit, in the beginning, but this is the answer
+ to my initial doubts about 'who is telling the 2 divs in .sub to occupy 2 rows?'. */
+.container > div:first-child,
+.sub {
+    width: 100%;
+}
+
+/* highlight text in the hovered div */
+.container > div:first-child:hover {
+    color: lightblue;
+}
+.sub > div:hover {
+    color: lightblue;
+}
+
+@media (min-width: 992px) {
+    /* fixed width, above 992px */
+    .wrapper {
+        width: 992px;
+    }
+    /* set the '1 column / 2 rows' layout */
+    .container > div:first-child {
+        width: 20%;
+    }
+    /* notice: .sub as a whole (with 2 divs inside) will occupy 80% */
+    .sub {
+        width: 80%;
+    }
+    /* adjust height of div on the left to be as tall as 2 rows */
+    .container > div:first-child {
+        line-height: 600px;
+        height: 600px;
+    }
+}
+
+/* set background colors for different divs - I am using a color palette from Adobe Color */
+.el-one {
+    background-color: #0645ff;
+}
+.el-two {
+    background-color: #537eff;
+}
+.el-three {
+    background-color: #0537cc;
+}
